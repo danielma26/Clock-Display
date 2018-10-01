@@ -16,7 +16,12 @@ public class ClockDisplay
 {
     private NumberDisplay hours;
     private NumberDisplay minutes;
-    private String displayString;    // simulates the actual display
+    private String displayString;
+    private String hourActual;
+    private String am;
+    private String pm;
+    private boolean ampm;
+    // simulates the actual display
     
     /**
      * Constructor for ClockDisplay objects. This constructor 
@@ -24,9 +29,13 @@ public class ClockDisplay
      */
     public ClockDisplay()
     {
-        hours = new NumberDisplay(24);
+        hours = new NumberDisplay(13);
         minutes = new NumberDisplay(60);
+        am = "am";
+        pm = "pm";
         updateDisplay();
+        
+        
     }
 
     /**
@@ -36,11 +45,17 @@ public class ClockDisplay
      */
     public ClockDisplay(int hour, int minute)
     {
-        hours = new NumberDisplay(24);
+        hours = new NumberDisplay(13);
         minutes = new NumberDisplay(60);
+        hours.setValue(hour);
+        minutes.setValue(minute);
         setTime(hour, minute);
+        
+        
     }
 
+       
+    
     /**
      * This method should get called once every minute - it makes
      * the clock display go one minute forward.
@@ -81,4 +96,29 @@ public class ClockDisplay
         displayString = hours.getDisplayValue() + ":" + 
                         minutes.getDisplayValue();
     }
+    
+    public void twelveHours ( boolean x, int hour, int minute)
+    {
+        x= ampm;
+        hours = new NumberDisplay(13);
+        minutes = new NumberDisplay(60);
+        hours.setValue(hour);
+        minutes.setValue(minute);
+        
+        if (ampm==true)
+        { 
+            hourActual= hours.getDisplayValue() + ":" + 
+                        minutes.getDisplayValue() + ":am";
+        }
+        else
+        {
+            hourActual= hours.getDisplayValue() + ":" + 
+                        minutes.getDisplayValue() +":pm";
+        }
+    
+    
+    
+    }
+    
+    
 }
